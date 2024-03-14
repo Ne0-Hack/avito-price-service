@@ -3,10 +3,11 @@ import * as dotenv from "dotenv"
 dotenv.config()
 
 
-const port = 6379
+const host = process.env.REDIS_HOST
+const port = process.env.REDIS_PORT
 
 export const redisClient = createClient({
-    url: `redis://redis:${port}/0`
+    url: `redis://${host}:${port}/0`
 });
 
 redisClient.on('error', err => console.log('REDIS ERROR CONNECT TO | STORAGE | ', err));
